@@ -1,0 +1,26 @@
+.container {
+    position: relative;
+    max-width: $wide-breakpoint;
+    margin: 0 auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    @include for-mobile-layout {
+        max-width: initial;
+    }
+
+    @include for-tablet-layout {
+        max-width: $mobile-breakpoint;
+    }
+
+    @include for-normal-layout {
+        max-width: $tablet-breakpoint;
+    }
+
+    @include for-wide-layout {
+        max-width: $wide-breakpoint;
+    }
+
+    @include for-wide-layout {
+        max-width: $xwide-breakpoint;
+    }
+}

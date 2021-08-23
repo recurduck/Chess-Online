@@ -1,0 +1,35 @@
+{
+	"_id": "5e28393890dd7201a06d4e44",
+	"gameBoard": [],
+	"countGame": 1,
+	"whiteTurn": true,
+	"selectedCell": null, 
+	"whitePlayer": {
+		"_id": "5e26e0b718a0891d4c995527",
+		"username": "Magnus Carlsen",
+		"time": 180000,
+		"kingPos": { "i": 0, "j": 4 },
+		"kingMoved": false,
+		"closeRookMoved": false,
+		"farRookMoved": false,
+		"lastMove": {
+			"fromCoord": null, 
+			"toCoord": null,  
+			"piece": "" 
+		}
+	},
+	"blackPlayer": {
+		"_id": "5e26e0b718a0891d4c995537",
+		"username": "Fabiano Caruana",
+		"time": 180000, 
+		"kingPos": { "i": 0, "j": 4 },
+		"kingMoved": false,
+		"closeRookMoved": false,
+		"farRookMoved": false,
+		"lastMove": {
+			"fromCoord": null, 
+			"toCoord": null,  
+			"piece": ""
+		}
+	}
+}

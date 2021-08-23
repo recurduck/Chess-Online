@@ -1,0 +1,71 @@
+$i:1;
+$j:8;
+$count:$j*$j;
+$per-block:$j;
+@mixin chess($count,$color,$i:$i,$j:$j){
+  
+  @if $i <= $count{
+    @if $i % $per-block == 1{
+        // $color:invert($color);
+        $color:invert($color);
+    }
+    .board .cell:nth-child(#{$i}){
+            // background:$color;
+            // $color:invert($color);
+            $color:invert($color);
+        }
+       @include chess($count,$color,$i+1,$j+$per-block);
+    }
+}
+.board .cell{
+    // height:100vh / $per-block;
+    // width: unquote((100/$per-block) + '%');
+    width: 12.5%;
+    height: 12.5%;
+    font-size: 5vw;
+    color: rgb(77, 77, 77)
+}
+@include chess(64,#000);
+
+.board {
+    width: 40vw;
+    height: 40vw;
+    display: flex;
+    flex-wrap: wrap; 
+    background-image: url(../../assets/board.jpg);
+    background-size: 25% 25%;
+    background-repeat: repeat; 
+    cursor: grab;
+    &-black { 
+        transform: rotate(180dex);
+    }
+    .cell.hint{
+        background-clip: content-box;
+        border-radius: 50%;
+        // pointer-events: none;
+        background-color: rgba(0,0,0,.1);
+        padding: 4.2%;
+    }
+    .cell.selected {
+        background-color: chartreuse;
+    }
+    .cell.black {
+        transform: rotate(180deg);
+    }
+}
+
+.dev-data, .dev-data tr, .dev-data td {
+    border: 1px solid black;
+    th,td {
+        padding: 10px;
+    }
+    th {
+        font-weight: bold;
+    }
+    thead th {
+        text-align: center;
+    }
+    tbody th {
+        text-align: left;
+    }
+}
