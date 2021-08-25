@@ -1,0 +1,160 @@
+.main-header {
+    background-color: #292929;
+    height: 4rem;
+    .menu-btn {
+        display: none;
+    }
+    nav {
+        height: 100%;
+        a {
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 100%;
+            transition: .3s;
+            &:hover , &.active {
+                color: yellowgreen;
+                box-shadow: inset 0px -5px 0px 0px yellowgreen;
+            }
+        }
+    }
+    ul {
+        height: 100%;
+    }
+    li {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    a { 
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: whitesmoke;
+    }
+}
+
+.logo {
+    font-size: 40px;
+}
+
+.app-header {
+    background: $clr7;
+    width: 100%;
+    padding: 0px 20px;
+    margin: 0 auto;
+    height: 55px;
+    box-shadow: 1px 0 2px 0;
+    margin-bottom: 1px;
+    background-color: #fff;
+    // position: fixed;
+    z-index: 3;
+    @include for-tablet-layout {
+        padding: 0;
+    }
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        overflow: hidden;
+        background-color: #fff;
+    }
+    li a {
+        display: block;
+        padding: 10px 20px;
+        border-right: 1px solid #f4f4f4;
+        color: #3f7aae;
+        text-decoration: none;
+        &:hover {
+            background-color: darken($clr7, 10%);
+        }
+    }
+    .app-logo {
+        width: 190px;
+        display: block;
+        float: left;
+        font-size: 2em;
+        padding: 13px 20px;
+        text-decoration: none;
+    }
+    .menu {
+        clear: both;
+        max-height: 0;
+        transition: max-height 0.2s ease-out;
+        &-icon {
+            cursor: pointer;
+            display: block;
+            float: right;
+            padding: 28px 20px;
+            position: relative;
+            user-select: none;
+            .navicon {
+                background: #3f7aae;
+                display: block;
+                height: 2px;
+                position: relative;
+                transition: background 0.2s ease-out;
+                width: 18px;
+            }
+        }
+        &-btn {
+            display: none;
+            &:hover {
+                background-color: darken($clr7, 10%);
+            }
+        }
+    }
+}
+.app-header .menu-icon .navicon:before,
+.app-header .menu-icon .navicon:after {
+    background: #3f7aae;
+    content: "";
+    display: block;
+    height: 100%;
+    position: absolute;
+    transition: all 0.2s ease-out;
+    width: 100%;
+}
+.app-header .menu-icon .navicon:before {
+    top: 5px;
+}
+.app-header .menu-icon .navicon:after {
+    top: -5px;
+}
+.app-header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+}
+.app-header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+}
+.app-header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+}
+
+.app-header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+}
+
+.app-header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.app-header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+}
+
+/* 48em = 768px */
+
+@media (min-width: 48em) {
+    .app-header li {
+        float: left;
+    }
+    .app-header li a {
+        padding: 5px 30px;
+    }
+    .app-header .menu {
+        padding: 11px 15px 4px;
+        clear: none;
+        float: right;
+        max-height: none;
+    }
+    .app-header .menu-icon {
+        display: none;
+    }
+}
