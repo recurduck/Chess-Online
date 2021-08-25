@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 export const Navbar = () => {
     const { loggedInUser } = useSelector(state => state.userModule);
-    debugger;
     const [isLoggedin, setIsLoggedIn]  = useState(false)
     // const [reduxUser, setReduxUser] = useState(useSelector(state => state.userModule))
     console.log(loggedInUser);

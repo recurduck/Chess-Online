@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import { boardsService } from "../services/boards-service"
 import { boardService } from "../services/board-service"
-// import { socketService } from "../services/socketService";
+import { socketService } from "../services/socketService";
 
 import { GameData } from "../cmps/GameData.jsx";
 import { useSelector } from "react-redux"
@@ -15,8 +15,6 @@ export const Gameroom = () => {
   const [game, setGame] = useState(null);
   const [board, setBoard] = useState([]);
   let user = useSelector(state => state.userModule)
-
-  // await socketService.setup();
 
   const fetchGame = async () => {
     const fetchedBoards = await boardsService.getBoardById(id)
@@ -33,9 +31,20 @@ export const Gameroom = () => {
     history.goBack();
   }
 
+  useEffect(async () => {
+    function cb(x) { console.log(x) }
+    await socketService.setup();
+    socketService.on('GAME_LISTNER', cb)
+    socketService.emit('GAME_LISTNER', 'someone joined the socket')
+  }, [])
+
   useEffect(() => {
-    if(!game) return
+    if (!game) return
     const cellClicked = async (i, j) => {
+      if(!user.loggedInUser) {
+        console.log('You are not a player in this game')
+        return
+      }
       const _game = await boardService.cellClicked(i, j, game, user.loggedInUser._id);
       console.log(_game)
       _game && setGame({ ..._game });
@@ -64,7 +73,7 @@ export const Gameroom = () => {
 
   //TODO: create cell component
   // redux hold game, and user on the reducer make a function hold and remove from cell Selected..
-  if(!game) {
+  if (!game) {
     reset()
     return <div>loading...</div>
   }
@@ -78,7 +87,7 @@ export const Gameroom = () => {
         </div>
 
         {game.blackPlayer.user ? <GameData game={game} /> : 'waiting for an opponent'}
-        <button onClick={()=> onLeavingGame()}>Leave Game</button>
+        <button onClick={() => onLeavingGame()}>Leave Game</button>
       </section>
     </div>
   )

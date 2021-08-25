@@ -15,10 +15,10 @@ export const BoardsPreview = () => {
   const reset = () => {
     fetchBoards();
   }
-  
+
   const onCreateNewGame = async () => {
-    let {_id, username} = user.loggedInUser
-    let newBoard = await boardsService.addBoard({_id, username,})
+    let { _id, username } = user.loggedInUser
+    let newBoard = await boardsService.addBoard({ _id, username, })
     console.log(newBoard._id)
     history.push(`/gamerooms/${newBoard._id}`)
   }
@@ -28,11 +28,13 @@ export const BoardsPreview = () => {
   })
 
   const onAddPlayerToGame = async (boardId) => {
-    let {_id} = user.loggedInUser
-    await boardsService.addPlayerToGame(boardId,_id)
+    if (user.loggedInUser) {
+      let { _id } = user.loggedInUser
+      await boardsService.addPlayerToGame(boardId, _id)
+    }
     history.push(history.push(`/gamerooms/${boardId}`))
-  } 
-  if(!boards) {
+  }
+  if (!boards) {
     reset()
     return <div>loading...</div>
   }
@@ -40,7 +42,7 @@ export const BoardsPreview = () => {
   console.log(boards);
   return (
     <div>
-      {user.loggedInUser && <button onClick={() => onCreateNewGame()}>New Game</button>} 
+      {user.loggedInUser && <button onClick={() => onCreateNewGame()}>New Game</button>}
       <table>
         <thead>
           <tr>
