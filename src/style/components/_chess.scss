@@ -69,3 +69,10 @@ $per-block:$j;
         text-align: left;
     }
 }
+
+.black-player {
+    transform: rotate(180deg);
+    div {
+        transform: inherit;
+    }
+}

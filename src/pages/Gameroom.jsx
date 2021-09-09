@@ -27,30 +27,33 @@ export const Gameroom = () => {
   }
 
   const onLeavingGame = async () => {
-    await boardsService.deleteBoard(id)
-    console.log('game deleted');
+    if (user.loggedInUser && (user.loggedInUser._id === game.whitePlayer.user._id || user.loggedInUser._id === game.blackPlayer.user._id)) {
+      await boardsService.deleteBoard(id)
+      console.log('game deleted');
+    }
     history.goBack();
   }
   useEffect(() => {
     async function socketSetup() {
       await socketService.setup();
       socketService.emit("room-id", id);
-    socketService.on("update wap", updateSocketBoard);
-
-      console.log('id', id)
+      socketService.on("update-board", updateSocketBoard);
     }
     socketSetup()
-  }, [])
-  const updateSocketBoard = (data) => {
-    setBoard(data.board);
+  }, [id])
+
+  const updateSocketBoard = (game) => {
+    setGame(game);
   };
 
   useEffect(() => {
     if (!game) return
     const cellClicked = async (i, j) => {
-      const _game = await boardService.cellClicked(i, j, game, user.loggedInUser._id);
-      console.log(_game)
-      _game && setGame({ ..._game });
+      if (user.loggedInUser) {
+        const _game = await boardService.cellClicked(i, j, game, user.loggedInUser._id);
+        if (_game && _game.whiteTurn !== game.whiteTurn) socketService.emit('update-board', _game)
+        _game && setGame({ ..._game });
+      }
     }
 
     const updateGameBoard = () => {
@@ -69,10 +72,8 @@ export const Gameroom = () => {
       }
       setBoard(_board);
     }
-
     updateGameBoard();
-    console.log('board Updated: ', game.gameBoard);
-  }, [game]);
+  }, [game,user.loggedInUser]);
 
   //TODO: create cell component
   // redux hold game, and user on the reducer make a function hold and remove from cell Selected..
@@ -85,7 +86,7 @@ export const Gameroom = () => {
     <div>
       <h1>GameRoom {id}</h1>
       <section className="flex wrap">
-        <div className="board">
+        <div className={`board${(user.loggedInUser && game.blackPlayer.user && user.loggedInUser._id === game.blackPlayer.user._id) ? ' black-player' : ''}`}>
           {board}
         </div>
 
