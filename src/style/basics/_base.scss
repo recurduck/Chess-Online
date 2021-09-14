@@ -2,7 +2,8 @@
     box-sizing: border-box;
 }
 body {
-    height: 100vh;    
+    height: 100vh;  
+    font-family: Roboto;
 }
 #root {
     height: 100%;
@@ -11,4 +12,53 @@ main {
     background-color: cornsilk;
     height: 100%;
     padding: 20px;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+    :focus {
+        color: inherit;
+    }
+    :active {
+        color: inherit;
+    }    
+}
+button {
+    cursor: pointer;
+}
+strong {
+    font-weight: bold;  
+}
+h1 { 
+    font-size: 2rem;
+    text-align: center;
+}
+h2 { 
+    font-size: 1.5rem;
+}
+.icon {
+    color: white;
+    cursor: pointer;
+    &:hover{
+        color: goldenrod
+    }
+}
+.hero {
+    background-image:url(../../assets/HERO.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 60vh;
+    color: $clr7;
+    a {
+        padding: 10px 20px;
+        border-radius: 30px;
+        width: 50%;
+        background-color: rgba(165, 42, 42, 0.527);
+        transition: .3s ease-out;
+        font-size: 40px;
+        font-family: 'Times New Roman', Times, serif;
+        &:hover {
+            color: goldenrod;
+        }
+    }
 }

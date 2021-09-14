@@ -1,8 +1,18 @@
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import { logout } from '../store/actions/userActions';
 
 export const Navbar = () => {
     const { loggedInUser } = useSelector(state => state.userModule);
+    const dispach = useDispatch()
+    const history = useHistory()
+    const onLogout = () => {
+        history.push(`/`)
+        dispach(logout())
+    }
     return (
         <nav className="flex align-center">
             <ul className="flex align-center">
@@ -13,6 +23,7 @@ export const Navbar = () => {
                     :
                     <NavLink to='/Member/'>{loggedInUser.username}</NavLink>
                 }</li>
+                {loggedInUser && <li><ExitToAppIcon className="icon" onClick={()=> onLogout()} /></li>}
             </ul>
         </nav>
     )

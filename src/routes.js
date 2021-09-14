@@ -19,7 +19,7 @@ export const routes = [
         component: Login
     },
     {
-        path: '/Member/:userId',
+        path: '/Member/',
         component: Member,
     },
     {
