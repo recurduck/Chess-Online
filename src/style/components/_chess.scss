@@ -23,8 +23,6 @@ $per-block:$j;
 }
 
 .board .cell{
-    // height:100vh / $per-block;
-    // width: unquote((100/$per-block) + '%');
     width: 12.5%;
     height: 12.5%;
     font-size: 5vw;
@@ -101,5 +99,8 @@ $per-block:$j;
         .cell {
             font-size: 11vw;
         }
+    }
+    .hero {
+        height: 75vh;
     }
 }

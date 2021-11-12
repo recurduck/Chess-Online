@@ -85,3 +85,24 @@ table.boards-list {
         background-color: $table-btn-hover-background-color;
     }
 }
+
+@media (max-width: 48em) {
+    table.boards-list {
+        background-color: $table-background-color;
+        font-size: 0.75rem;
+        thead {
+            th {
+                padding: 0px;
+            }
+            :last-child {
+                padding: 10px;
+            }
+        }
+        tbody tr {
+            td {
+                padding: 0px;
+                text-align: center;
+            }
+        }
+    }      
+}

@@ -171,5 +171,10 @@
 }
 
 @media (max-width: 48em) {
-    
+    .header-container {
+        padding: 0px 10px;
+    }
+    .logo::before {
+        content: '';
+    }
 }

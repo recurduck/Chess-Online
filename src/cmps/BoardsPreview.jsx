@@ -37,9 +37,9 @@ export const BoardsPreview = () => {
   const getBoardOptions = (board) => {
     if (user.loggedInUser && (board.whitePlayer.user._id === user.loggedInUser._id || (board.blackPlayer.user && board.blackPlayer.user._id === user.loggedInUser._id)))
       return 'back'
-    else if (board.blackPlayer.user)
-      return 'Watch'
-    else return 'Join'
+    else if (board.blackPlayer.user) return 'Watch'
+    else if (user.loggedInUser) return 'Join'
+    else return 'Watch'
   }
   if (!boards) {
     reset()

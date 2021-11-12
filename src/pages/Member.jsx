@@ -6,7 +6,7 @@ export function Member() {
   let joined = new Date(loggedInUser.joined * 1000);
   let active = new Date(loggedInUser.last_online * 1000);
   return (
-    <div>
+    <div className="member">
       <h1 className="mb-4"><strong>{loggedInUser.name} {loggedInUser.lastName} - Profile</strong></h1>
       <ul className="flex space-around w-75 mb-4">
         <li className="flex column align-center user-info"><p>{loggedInUser.followers.length}</p><p>followers</p></li>

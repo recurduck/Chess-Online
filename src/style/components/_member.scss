@@ -16,3 +16,13 @@
   border: 5px solid black;
   border-radius: 20px;
 }
+
+@media (max-width: 48em) {
+  .member ul {
+    width: 100%;
+    li {
+      padding: 0px;
+      text-align: center;
+    }
+  }
+}

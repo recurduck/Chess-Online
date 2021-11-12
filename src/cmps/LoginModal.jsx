@@ -52,7 +52,7 @@ export const LoginModal = () => {
     }
 
     return (
-        <div className='login-modal flex'>
+        <div className='login-modal flex column'>
             <form className="flex column align-center" onSubmit={doLogin}>
                 <img src="https://picsum.photos/300/300" alt="Avatar" />
                 <div className="form-inputs flex column w-75">

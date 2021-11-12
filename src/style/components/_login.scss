@@ -1,8 +1,8 @@
 .login-modal {
     position: absolute;
-    top: 50%;
+    top: 80px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%);
     width: 80vw;
     height: auto;
     box-shadow: 1px 1px 5px 1px rgb(121, 121, 121);
@@ -116,4 +116,13 @@
   background: #377D6A;
   border-radius: 3px;
   min-height: 48px;
+}
+
+@media (max-width: 48em) {
+  .login-modal {
+    img {
+      width: 250px;
+      height: 250px;
+    }
+  }
 }
