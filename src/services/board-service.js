@@ -27,9 +27,7 @@ function onReset() {
 
 function cellClicked(cellI, cellJ, game, userId) {
   let board = game.gameBoard
-  console.log(userId, game.whiteTurn ? game.whitePlayer.user._id : game.blackPlayer.user._id);
   if (userId === (game.whiteTurn ? game.whitePlayer.user._id : game.blackPlayer.user._id)) {
-    console.log('service: ', cellI, cellJ, 'board:', board)
     // if the target is marked - move the piece!
     const cellCoord = { i: cellI, j: cellJ };
     if (board[cellI][cellJ].isMarked) {

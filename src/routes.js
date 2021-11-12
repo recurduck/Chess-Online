@@ -19,7 +19,7 @@ export const routes = [
         component: Login
     },
     {
-        path: '/Member/:userId',
+        path: '/Member/',
         component: Member,
     },
     {
@@ -27,7 +27,12 @@ export const routes = [
         component: Admin,
     },
     {
+        path: '/home',
+        component: Home,
+    },
+    {
         path: '/',
         component: Home,
-    }
+    },
+    
 ]

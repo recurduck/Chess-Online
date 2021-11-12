@@ -48,6 +48,16 @@ export function signup(userCreds) {
     }
   }
 }
+export function refresh(userId) {
+  return async dispatch => {
+    try {
+      const user = await userService.getById(userId)
+      dispatch({ type: 'SET_USER', user })
+    } catch (err) {
+      console.log('UserActions: err in refresh', err)
+    }
+  }
+}
 export function logout() {
   return async dispatch => {
     try {

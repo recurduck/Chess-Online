@@ -1,7 +1,9 @@
 // if (sessionStorage.loggedinUser) localLoggedinUser = JSON.parse(sessionStorage.loggedinUser)
+import {userService} from '../../services/user-service.js'
 
 const initialState = {
-  loggedInUser: null,
+  // loggedInUser: null,
+  loggedInUser: userService.getLoggedinUser(),
   users: []
 }
 

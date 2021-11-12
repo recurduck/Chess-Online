@@ -8,7 +8,6 @@
 
 // import { utilService } from "./util-service.js";
 import { httpService } from "./httpService.js";
-const KEY = 'board';
 const KIT = {
   KING_WHITE: '♔',
   QUEEN_WHITE: '♕',
@@ -60,7 +59,6 @@ function getBoardById(boardId) {
 }
 
 function addPlayerToGame(boardId, playerId) {
-  console.log('@@@@@@@@@@@@@',boardId, playerId );
   return httpService.put(`board/${boardId}/${playerId}`, {boardId,playerId})  
 }
 // function updateBoard(boardId, key, value) {

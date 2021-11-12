@@ -1,26 +1,29 @@
-import { useState, useEffect } from "react"
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+import { logout } from '../store/actions/userActions';
 
 export const Navbar = () => {
     const { loggedInUser } = useSelector(state => state.userModule);
-    const [isLoggedin, setIsLoggedIn]  = useState(false)
-    // const [reduxUser, setReduxUser] = useState(useSelector(state => state.userModule))
-    console.log(loggedInUser);
-    // useEffect(() => {
-    // //     // const newUser = useSelector(state => state.userModule)
-    // //     setLoggedinUser(reduxUser)
-    //     console.log('@@@@@@@@@@@change');
-    // },[loggedinUser])
+    const dispach = useDispatch()
+    const history = useHistory()
+    const onLogout = () => {
+        history.push(`/`)
+        dispach(logout())
+    }
     return (
         <nav className="flex align-center">
             <ul className="flex align-center">
-                <li><NavLink activeClassName="active" to='/gamerooms'>Games</NavLink></li>
+                <li><NavLink to='/home'>Home</NavLink></li>
+                <li><NavLink to='/gamerooms'>Games</NavLink></li>
                 <li>{!loggedInUser ?
-                    <NavLink activeClassName="active" to='/login'>Login</NavLink>
+                    <NavLink to='/login'>Login</NavLink>
                     :
-                    <NavLink activeClassName="active" to='/Member/'>{loggedInUser.username}</NavLink>
+                    <NavLink to='/Member/'>{loggedInUser.username}</NavLink>
                 }</li>
+                {loggedInUser && <li><ExitToAppIcon className="icon" onClick={()=> onLogout()} /></li>}
             </ul>
         </nav>
     )
